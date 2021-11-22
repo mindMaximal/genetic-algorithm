@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 public class Individidual implements Comparable<Individidual>{
-    int countSigns; // количество признаков
     double[] signs; // массив признаков для текущей особи
 
     double euclidDist; // эвклидово расстояние между особью и искомой функцией
@@ -13,7 +12,6 @@ public class Individidual implements Comparable<Individidual>{
     }
 
     public Individidual(int countSigns) {
-        this.countSigns = countSigns;
         signs = new double[countSigns];
     }
 
@@ -36,7 +34,7 @@ public class Individidual implements Comparable<Individidual>{
 
         // точка разреза, после которой выполняется разрез хромосомы (получаем рандомно от 0 до последнего признака)
         int indexCuttingPoint = Function.getRandomFromTo(0, countOfSigns);
-        System.out.println("CUT= " + indexCuttingPoint);
+        System.out.println("Точка разреза: " + indexCuttingPoint);
 
         // создаем два потомка
         Individidual child1 = new Individidual(countOfSigns);
@@ -180,7 +178,7 @@ public class Individidual implements Comparable<Individidual>{
      * @return мутировавшая особь
      */
     public void mutateByTwoPoints() {
-        int size = countSigns; // количество признаков в особи
+        int size = getCountSigns(); // количество признаков в особи
 
         // определяются случайным образом две позиции
         int position1 = Function.getRandomFromTo(0, size);
@@ -202,7 +200,7 @@ public class Individidual implements Comparable<Individidual>{
      * @return мутировавшая особь
      */
     public void mutateByThreePoints() {
-        int size = countSigns; // количество признаков в особи
+        int size = getCountSigns(); // количество признаков в особи
 
         // определяются случайным образом 3 позиции
         int position1 = Function.getRandomFromTo(0, size);
@@ -223,7 +221,7 @@ public class Individidual implements Comparable<Individidual>{
      */
     public void mutateInStepIncrease(double[] fitnessFunc) {
         // для каждого признака особи:
-        for (int i = 0; i < countSigns; ++i) {
+        for (int i = 0; i < getCountSigns(); ++i) {
             double step = getStep(signs[i], fitnessFunc[i]); // вычисляем шаг, который будем прибавлять к признаку
             signs[i] += step; // увеличиваем признак на найденный шаг
             signs[i] = Function.round(signs[i], 2); // округляем
@@ -262,7 +260,7 @@ public class Individidual implements Comparable<Individidual>{
     }
 
     public int getCountSigns() {
-        return countSigns;
+        return signs.length;
     }
 
     public double[] getSigns() {

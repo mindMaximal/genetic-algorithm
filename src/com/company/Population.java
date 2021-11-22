@@ -36,7 +36,7 @@ public class Population {
         int count = 0; // Кол-во популяций в цикле
 
         do {
-            crossoverByThreePointsOperator();
+            crossoverByTwoPointOperator();
 
             mutate();
             clear(); // Удаляем половину удвоенной популяции с минимальным эвклидовым расстоянием
@@ -49,7 +49,7 @@ public class Population {
             }
 
             // Ищем минимальное эвклидово расстояние
-            individualMinDistance = getMinEuclideanDistance();
+            individualMinDistance = getMinEuclideanDistanceElem();
             minDistance = individualMinDistance.getEuclideanDistance();
 
             minDistance = Function.round(minDistance, 1); // Округлим для вывода
@@ -179,7 +179,6 @@ public class Population {
     public void mutate(){
         for (Individidual el: population) {
             el.mutateInStepIncrease(func);
-            // можно сделать любой метод
         }
     }
 
@@ -243,7 +242,7 @@ public class Population {
      * Выводит особь с минимальным эвклидовым расстоянием.
      * @return особь с наименьшим значением эвклидового расстояния среди всей популяции
      */
-    public Individidual getMinEuclideanDistance(){
+    public Individidual getMinEuclideanDistanceElem(){
         // минимум = первому элементу
         Individidual indWithMinEuclid = population.get(0);
 

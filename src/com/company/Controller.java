@@ -39,10 +39,10 @@ public class Controller extends Application {
             series1.getData().add(new XYChart.Data(x[i], y[i]));
         }
 
-        // определение осей
+        // Оси
         final NumberAxis xAxis2 = new NumberAxis();
         final NumberAxis yAxis2 = new NumberAxis();
-        // создание графика
+        // Создание графика
         final LineChart<Number,Number> lineChart2 = new LineChart<Number,Number>(xAxis2, yAxis2);
 
         // Запускаем генетический алгоритм
@@ -52,7 +52,7 @@ public class Controller extends Application {
         XYChart.Series series2 = new XYChart.Series();
         series2.setName("Признаки особи");
 
-        double[] y2 = population.getMinEuclideanDistance().getSigns();
+        double[] y2 = population.getMinEuclideanDistanceElem().getSigns();
         double[] x2 = x;
 
         // все х и у вбиваем в график поточечно
